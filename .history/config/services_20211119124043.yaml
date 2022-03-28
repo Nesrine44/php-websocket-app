@@ -1,0 +1,65 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@xmaelo 
+niketpathak
+/
+my-rest-api
+Public
+1
+21
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+my-rest-api/config/services.yaml
+@niketpathak
+niketpathak ✨🚩📦️ feat: Handle file upload to an existing resource
+Latest commit 5404cd6 on Aug 1
+ History
+ 1 contributor
+34 lines (28 sloc)  1.37 KB
+   
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    public_directory: '%kernel.project_dir%/public'
+    uploads_directory: '%public_directory%/uploads'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+        bind:               # makes $publicPath available to all services
+            $publicPath: '%public_directory%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    App\Service\FileUploader:
+        arguments:
+            $uploadPath: '%uploads_directory%'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+

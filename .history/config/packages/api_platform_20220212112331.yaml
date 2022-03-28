@@ -1,0 +1,42 @@
+api_platform:
+    title: 'Symfony REST API'
+    description: 'A Symfony API to manage a simple blog app.'
+    version: '1.0.0'
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    formats:
+        jsonld: ['application/ld+json']
+        json: ['application/json']
+        html: ['text/html']
+        multipart: ['multipart/form-data']
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]
+        api_keys:
+          apiKey:
+            name: Authorization
+            type: header
+    defaults:
+        pagination_items_per_page: 1000 # Default value
+
+
+# api_platform:
+#     title: 'Symfony REST API'
+#     description: 'A Symfony API to manage a simple blog app.'
+#     version: '1.0.0'
+#     formats:
+#         json: ['application/json']
+#         jsonld: ['application/ld+json']
+#         html: ['text/html']
+#         multipart: ['multipart/form-data']
+#     mapping:
+#         paths: ['%kernel.project_dir%/src/Entity']
+#     patch_formats:
+#         json: ['application/merge-patch+json']
+#     swagger:
+#         versions: [3]
+#         api_keys:
+#           apiKey:
+#             name: Authorization
+#             type: header
